@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { GraduationCap, Sparkles } from "lucide-react";
+import { GraduationCap } from "lucide-react";
 import { about, education } from "../../data/mock";
 import SectionLabel from "./SectionLabel";
 
@@ -60,25 +60,10 @@ export default function About() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-60px" }}
                     transition={{ duration: 0.45, delay: i * 0.08 }}
-                    className={`relative rounded-xl border p-4 md:p-5 transition-colors ${
-                      e.highlight
-                        ? "border-amber-400/40 bg-amber-400/[0.06] hover:bg-amber-400/[0.09]"
-                        : "border-white/10 bg-white/[0.02] hover:bg-white/[0.04]"
-                    }`}
+                    className="rounded-xl border border-white/10 bg-white/[0.02] p-4 md:p-5 hover:border-amber-400/30 hover:bg-white/[0.04] transition-colors"
                   >
-                    {e.highlight && (
-                      <div className="absolute -top-2 left-4 inline-flex items-center gap-1 rounded-full bg-amber-400 text-[#1a0f00] px-2 py-0.5 text-[10px] font-semibold tracking-wide">
-                        <Sparkles size={10} />
-                        FLAGSHIP
-                      </div>
-                    )}
-
                     <div className="flex items-baseline justify-between gap-3">
-                      <h3
-                        className={`text-[15px] md:text-[16.5px] font-semibold leading-tight ${
-                          e.highlight ? "text-amber-200" : "text-white"
-                        }`}
-                      >
+                      <h3 className="text-[15px] md:text-[16.5px] font-semibold leading-tight text-white">
                         {e.school}
                       </h3>
                       <span className="shrink-0 text-[11.5px] text-zinc-400 tabular-nums">

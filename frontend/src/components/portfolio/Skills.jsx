@@ -32,11 +32,18 @@ function LogoItem({ t }) {
 
 function LogoMarquee() {
   const row = [...toolLogos, ...toolLogos];
+  const maskStyle = {
+    WebkitMaskImage:
+      "linear-gradient(to right, transparent 0%, black 14%, black 86%, transparent 100%)",
+    maskImage:
+      "linear-gradient(to right, transparent 0%, black 14%, black 86%, transparent 100%)",
+  };
   return (
-    <div className="relative mt-14 overflow-hidden py-2" aria-label="Tools I work with">
-      <div className="pointer-events-none absolute inset-y-0 left-0 w-28 bg-gradient-to-r from-[#0a0a0b] via-[#0a0a0b]/80 to-transparent z-10" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 w-28 bg-gradient-to-l from-[#0a0a0b] via-[#0a0a0b]/80 to-transparent z-10" />
-
+    <div
+      className="relative mt-14 overflow-hidden py-2"
+      style={maskStyle}
+      aria-label="Tools I work with"
+    >
       <div className="marquee-track flex items-center gap-14 whitespace-nowrap will-change-transform">
         {row.map((t, i) => (
           <LogoItem key={t.slug + i} t={t} />

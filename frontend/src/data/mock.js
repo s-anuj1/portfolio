@@ -37,15 +37,13 @@ export const education = [
   {
     school: "Indian Institute of Technology, Roorkee",
     short: "IIT Roorkee",
-    degree: "Integrated Dual Degree (B.Sc. + M.Sc.)",
+    degree: "Integrated Dual Degree",
     period: "2021  ·  2026",
-    highlight: true,
   },
   {
     school: "Matrix High School",
     degree: "Senior Secondary (Class XII)",
     period: "2019  ·  2020",
-    highlight: false,
   },
 ];
 

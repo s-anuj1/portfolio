@@ -19,7 +19,7 @@ export default function SectionLabel({ kicker, title, sub }) {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-80px" }}
         transition={{ duration: 0.5, delay: 0.05 }}
-        className="mt-3 text-3xl md:text-4xl lg:text-[44px] font-semibold tracking-tight text-white"
+        className="mt-3 text-3xl md:text-4xl lg:text-[44px] font-semibold tracking-tight bg-gradient-to-br from-white via-amber-50 to-amber-300/80 bg-clip-text text-transparent"
       >
         {title}
       </motion.h2>
