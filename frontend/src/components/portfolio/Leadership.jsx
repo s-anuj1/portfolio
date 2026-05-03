@@ -21,6 +21,7 @@ export default function Leadership() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.5, delay: i * 0.06 }}
+              whileHover={{ y: -3 }}
               className="group rounded-2xl border border-white/10 bg-white/[0.02] p-6 hover:border-amber-400/30 hover:bg-white/[0.04] transition-colors"
             >
               <div className="h-10 w-10 rounded-xl grid place-items-center bg-gradient-to-br from-amber-500/25 to-orange-600/10 border border-amber-400/25 text-amber-300">
@@ -29,13 +30,19 @@ export default function Leadership() {
               <div className="mt-5 text-[11px] uppercase tracking-[0.18em] text-amber-400/90">
                 {l.scale}
               </div>
-              <h3 className="mt-1 text-lg font-semibold text-white">
-                {l.role}
-              </h3>
+              <h3 className="mt-1 text-lg font-semibold text-white">{l.role}</h3>
               <div className="text-sm text-zinc-400">{l.org}</div>
-              <p className="mt-4 text-[14px] leading-relaxed text-zinc-300">
-                {l.outcome}
-              </p>
+              <ul className="mt-4 space-y-2">
+                {l.bullets.map((b, j) => (
+                  <li
+                    key={j}
+                    className="relative pl-5 text-[13.5px] leading-relaxed text-zinc-300"
+                  >
+                    <span className="absolute left-0 top-2 h-1.5 w-1.5 rounded-full bg-amber-400/80" />
+                    {b}
+                  </li>
+                ))}
+              </ul>
             </motion.div>
           ))}
         </div>
@@ -52,15 +59,19 @@ export default function Leadership() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-80px" }}
                 transition={{ duration: 0.5, delay: i * 0.08 }}
+                whileHover={{ y: -3 }}
                 className="relative rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.03] to-transparent p-6 md:p-7 hover:border-amber-400/30 transition-colors"
               >
-                <Quote className="absolute top-5 right-5 text-amber-400/25" size={28} />
+                <Quote
+                  className="absolute top-5 right-5 text-amber-400/25"
+                  size={28}
+                />
                 <blockquote className="text-[15.5px] leading-relaxed text-zinc-200">
                   “{t.quote}”
                 </blockquote>
                 <figcaption className="mt-5 text-sm">
                   <span className="text-white">{t.name}</span>
-                  <span className="text-zinc-500"> — {t.role}</span>
+                  <span className="text-zinc-500">, {t.role}</span>
                 </figcaption>
               </motion.figure>
             ))}

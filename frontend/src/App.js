@@ -10,12 +10,17 @@ import Skills from "./components/portfolio/Skills";
 import Leadership from "./components/portfolio/Leadership";
 import Contact from "./components/portfolio/Contact";
 import Footer from "./components/portfolio/Footer";
+import CustomCursor from "./components/portfolio/CustomCursor";
 
 function Portfolio() {
   return (
-    <div className="min-h-screen bg-[#0a0a0b] text-zinc-100 antialiased selection:bg-amber-400/30 selection:text-white">
+    <div className="relative min-h-screen text-zinc-100 antialiased selection:bg-amber-400/30 selection:text-white">
+      {/* Ambient multi-glow background */}
+      <div className="ambient-bg" aria-hidden="true" />
+      <div className="ambient-noise" aria-hidden="true" />
+
       <Header />
-      <main>
+      <main className="relative z-[1]">
         <Hero />
         <About />
         <Experience />
@@ -25,6 +30,8 @@ function Portfolio() {
         <Contact />
       </main>
       <Footer />
+
+      <CustomCursor />
     </div>
   );
 }

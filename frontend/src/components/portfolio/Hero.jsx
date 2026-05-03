@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Download, MapPin, Sparkles } from "lucide-react";
+import { ArrowRight, Mail, MapPin, Sparkles } from "lucide-react";
 import { profile, hero } from "../../data/mock";
 
 const scrollTo = (id) => {
@@ -10,8 +10,10 @@ const scrollTo = (id) => {
 
 export default function Hero() {
   return (
-    <section id="top" className="relative pt-36 pb-24 md:pt-44 md:pb-32 overflow-hidden">
-      {/* soft amber glow */}
+    <section
+      id="top"
+      className="relative pt-36 pb-24 md:pt-44 md:pb-32 overflow-hidden"
+    >
       <div className="pointer-events-none absolute inset-0 -z-10">
         <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-[900px] h-[600px] rounded-full bg-[radial-gradient(closest-side,rgba(245,158,11,0.18),transparent_70%)] blur-2xl" />
         <div className="absolute top-40 -left-24 w-[420px] h-[420px] rounded-full bg-[radial-gradient(closest-side,rgba(251,146,60,0.10),transparent_70%)] blur-2xl" />
@@ -63,22 +65,31 @@ export default function Hero() {
               transition={{ duration: 0.6, delay: 0.25 }}
               className="mt-8 flex flex-wrap items-center gap-3"
             >
-              <button
+              <motion.button
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ type: "spring", stiffness: 340, damping: 20 }}
                 onClick={() => scrollTo("#projects")}
-                className="group inline-flex items-center gap-2 rounded-full bg-amber-400 px-5 py-3 text-sm font-medium text-[#1a0f00] hover:bg-amber-300 transition-colors"
+                className="group inline-flex items-center gap-2 rounded-full bg-white/[0.04] border border-white/15 px-5 py-3 text-sm font-medium text-white hover:bg-white/[0.08] hover:border-white/25 transition-colors"
               >
                 View Work
-                <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" />
-              </button>
-              <a
-                href={profile.resumeView}
-                target="_blank"
-                rel="noreferrer"
-                className="group inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.03] px-5 py-3 text-sm font-medium text-white hover:bg-white/[0.06] hover:border-white/25 transition-colors"
+                <ArrowRight
+                  size={16}
+                  className="transition-transform group-hover:translate-x-0.5"
+                />
+              </motion.button>
+
+              <motion.a
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ type: "spring", stiffness: 340, damping: 20 }}
+                href={`mailto:${profile.email}?subject=Let%27s%20work%20together&body=Hi%20Anuj%2C`}
+                className="group relative inline-flex items-center gap-2 rounded-full bg-amber-400 px-5 py-3 text-sm font-semibold text-[#1a0f00] hover:bg-amber-300 transition-colors shadow-[0_10px_30px_-8px_rgba(245,158,11,0.55)] hover:shadow-[0_14px_40px_-8px_rgba(245,158,11,0.75)]"
               >
-                <Download size={16} />
-                Download Resume
-              </a>
+                <span className="absolute -inset-1 rounded-full bg-amber-400/30 blur-xl opacity-0 group-hover:opacity-100 transition-opacity" />
+                <Mail size={16} className="relative" />
+                <span className="relative">Hire Me</span>
+              </motion.a>
             </motion.div>
 
             <motion.div
@@ -92,7 +103,7 @@ export default function Hero() {
               </span>
               <span className="h-3 w-px bg-white/10" />
               <span className="inline-flex items-center gap-1.5">
-                <Sparkles size={13} className="text-amber-400" /> Open to 0→1 & Founder's Office roles
+                <Sparkles size={13} className="text-amber-400" /> Open to 0→1 and Founder's Office roles
               </span>
             </motion.div>
           </div>
@@ -114,8 +125,12 @@ export default function Hero() {
                 />
                 <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(10,10,11,0.85),transparent_45%)]" />
                 <div className="absolute left-4 right-4 bottom-4 rounded-xl border border-white/10 bg-black/40 backdrop-blur-md px-4 py-3">
-                  <div className="text-[13px] text-white font-medium">{profile.name}</div>
-                  <div className="text-[11.5px] text-zinc-400 mt-0.5">{profile.role}</div>
+                  <div className="text-[13px] text-white font-medium">
+                    {profile.name}
+                  </div>
+                  <div className="text-[11.5px] text-zinc-400 mt-0.5">
+                    {profile.role}
+                  </div>
                 </div>
               </div>
             </div>

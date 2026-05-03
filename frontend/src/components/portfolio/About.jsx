@@ -1,13 +1,17 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { about } from "../../data/mock";
+import { GraduationCap, Sparkles } from "lucide-react";
+import { about, education } from "../../data/mock";
 import SectionLabel from "./SectionLabel";
 
 export default function About() {
   return (
     <section id="about" className="relative py-24 md:py-28">
       <div className="mx-auto max-w-6xl px-6">
-        <SectionLabel kicker="01 / About" title="Clarity first. Then speed." />
+        <SectionLabel
+          kicker="01 / About"
+          title="Clarity first. Then speed."
+        />
         <div className="grid lg:grid-cols-12 gap-10">
           <div className="lg:col-span-7 space-y-5">
             {about.paragraphs.map((p, i) => (
@@ -25,25 +29,69 @@ export default function About() {
           </div>
 
           <div className="lg:col-span-5">
-            <div className="grid grid-cols-2 gap-3">
-              {about.highlights.map((h, i) => (
-                <motion.div
-                  key={h.k}
-                  initial={{ opacity: 0, y: 14 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-60px" }}
-                  transition={{ duration: 0.45, delay: i * 0.06 }}
-                  className="rounded-2xl border border-white/10 bg-white/[0.02] p-5 hover:border-amber-400/30 hover:bg-white/[0.04] transition-colors"
-                >
-                  <div className="text-3xl font-semibold tracking-tight text-white">
-                    {h.k}
+            <motion.div
+              initial={{ opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.55 }}
+              className="relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.04] via-white/[0.02] to-transparent p-6 md:p-7"
+            >
+              <div className="pointer-events-none absolute -top-20 -right-20 h-64 w-64 rounded-full bg-[radial-gradient(closest-side,rgba(245,158,11,0.18),transparent_70%)] blur-2xl" />
+
+              <div className="flex items-center gap-3">
+                <div className="h-10 w-10 rounded-xl grid place-items-center bg-gradient-to-br from-amber-500/25 to-orange-600/10 border border-amber-400/30 text-amber-300">
+                  <GraduationCap size={18} />
+                </div>
+                <div>
+                  <div className="text-[11px] uppercase tracking-[0.2em] text-amber-400/90">
+                    Education
                   </div>
-                  <div className="mt-1.5 text-[12.5px] leading-snug text-zinc-400">
-                    {h.v}
+                  <div className="text-[13px] text-zinc-400">
+                    Credentials & training
                   </div>
-                </motion.div>
-              ))}
-            </div>
+                </div>
+              </div>
+
+              <div className="mt-6 space-y-4">
+                {education.map((e, i) => (
+                  <motion.div
+                    key={e.school}
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-60px" }}
+                    transition={{ duration: 0.45, delay: i * 0.08 }}
+                    className={`relative rounded-xl border p-4 md:p-5 transition-colors ${
+                      e.highlight
+                        ? "border-amber-400/40 bg-amber-400/[0.06] hover:bg-amber-400/[0.09]"
+                        : "border-white/10 bg-white/[0.02] hover:bg-white/[0.04]"
+                    }`}
+                  >
+                    {e.highlight && (
+                      <div className="absolute -top-2 left-4 inline-flex items-center gap-1 rounded-full bg-amber-400 text-[#1a0f00] px-2 py-0.5 text-[10px] font-semibold tracking-wide">
+                        <Sparkles size={10} />
+                        FLAGSHIP
+                      </div>
+                    )}
+
+                    <div className="flex items-baseline justify-between gap-3">
+                      <h3
+                        className={`text-[15px] md:text-[16.5px] font-semibold leading-tight ${
+                          e.highlight ? "text-amber-200" : "text-white"
+                        }`}
+                      >
+                        {e.school}
+                      </h3>
+                      <span className="shrink-0 text-[11.5px] text-zinc-400 tabular-nums">
+                        {e.period}
+                      </span>
+                    </div>
+                    <div className="mt-1.5 text-[13.5px] text-zinc-300">
+                      {e.degree}
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
           </div>
         </div>
       </div>

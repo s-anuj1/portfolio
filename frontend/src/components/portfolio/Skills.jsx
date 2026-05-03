@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Lightbulb, Wrench, Rocket } from "lucide-react";
-import { skills } from "../../data/mock";
+import { skills, toolLogos } from "../../data/mock";
 import SectionLabel from "./SectionLabel";
 
 const icons = {
@@ -10,15 +10,48 @@ const icons = {
   Execution: Rocket,
 };
 
+function LogoItem({ t }) {
+  const [hidden, setHidden] = useState(false);
+  if (hidden) return null;
+  return (
+    <div className="group inline-flex items-center gap-2.5 opacity-70 hover:opacity-100 transition-opacity">
+      <img
+        src={`https://cdn.simpleicons.org/${t.slug}/e5e5e5`}
+        alt={t.name}
+        onError={() => setHidden(true)}
+        className="h-6 w-6 md:h-7 md:w-7 select-none"
+        loading="lazy"
+        draggable={false}
+      />
+      <span className="text-[13.5px] md:text-sm text-zinc-400 group-hover:text-amber-200 transition-colors">
+        {t.name}
+      </span>
+    </div>
+  );
+}
+
+function LogoMarquee() {
+  const row = [...toolLogos, ...toolLogos];
+  return (
+    <div className="relative mt-14 overflow-hidden py-2" aria-label="Tools I work with">
+      <div className="pointer-events-none absolute inset-y-0 left-0 w-28 bg-gradient-to-r from-[#0a0a0b] via-[#0a0a0b]/80 to-transparent z-10" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 w-28 bg-gradient-to-l from-[#0a0a0b] via-[#0a0a0b]/80 to-transparent z-10" />
+
+      <div className="marquee-track flex items-center gap-14 whitespace-nowrap will-change-transform">
+        {row.map((t, i) => (
+          <LogoItem key={t.slug + i} t={t} />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function Skills() {
   const groups = Object.entries(skills);
   return (
     <section id="skills" className="relative py-24 md:py-28">
       <div className="mx-auto max-w-6xl px-6">
-        <SectionLabel
-          kicker="04 / Skills"
-          title="The toolbox I reach for"
-        />
+        <SectionLabel kicker="04 / Skills" title="The toolbox I reach for" />
 
         <div className="grid md:grid-cols-3 gap-5">
           {groups.map(([name, items], i) => {
@@ -52,6 +85,8 @@ export default function Skills() {
             );
           })}
         </div>
+
+        <LogoMarquee />
       </div>
     </section>
   );

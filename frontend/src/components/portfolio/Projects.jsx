@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowUpRight, Eye, FileText } from "lucide-react";
+import { Eye, FileText } from "lucide-react";
 import { projects } from "../../data/mock";
 import SectionLabel from "./SectionLabel";
 import ProjectModal from "./ProjectModal";
@@ -39,9 +39,6 @@ function Card({ p, onOpen }) {
           <span className="inline-flex items-center rounded-full border border-amber-400/20 bg-amber-400/5 px-2.5 py-1 text-[10.5px] uppercase tracking-[0.16em] text-amber-300/90">
             {p.tag}
           </span>
-          <div className="h-9 w-9 rounded-full border border-white/10 bg-black/30 grid place-items-center text-zinc-400 group-hover:text-amber-300 group-hover:border-amber-400/30 transition-colors">
-            <ArrowUpRight size={16} />
-          </div>
         </div>
 
         <h3 className="mt-6 text-xl md:text-[22px] font-semibold tracking-tight text-white">
@@ -91,8 +88,7 @@ export default function Projects() {
       <div className="mx-auto max-w-6xl px-6">
         <SectionLabel
           kicker="03 / Selected Work"
-          title="Products, teardowns & strategy decks"
-          sub="Each card opens a quick case-study preview. Full decks are one click away — no friction."
+          title="Products, teardowns and strategy decks"
         />
 
         <div className="grid md:grid-cols-2 gap-5 md:gap-6">
