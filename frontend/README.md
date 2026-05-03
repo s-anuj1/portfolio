@@ -1,70 +1,78 @@
-# Getting Started with Create React App
+# Anuj Kumar — Portfolio
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A premium dark-theme portfolio (React + Tailwind + Framer Motion).
 
-## Available Scripts
+## Tech
+- React 19 (CRA + CRACO)
+- Tailwind CSS
+- Framer Motion
+- Lucide Icons
+- React Router
 
-In the project directory, you can run:
+## Getting started
 
-### `npm start`
+```bash
+# 1) install deps (yarn preferred)
+yarn install
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+# 2) run dev server on http://localhost:3000
+yarn start
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+# 3) production build (outputs to /build)
+yarn build
+```
 
-### `npm test`
+## Project structure
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
+frontend/
+├── public/
+├── src/
+│   ├── App.js                      # routes + layout + ambient bg + cursor
+│   ├── App.css
+│   ├── index.js
+│   ├── index.css                   # tailwind, fonts, cursor, noise, grid, marquee
+│   ├── data/
+│   │   └── mock.js                 # ALL content (profile, projects, experience, etc.)
+│   └── components/
+│       ├── ui/                     # shadcn primitives
+│       └── portfolio/
+│           ├── Header.jsx          # floating pill navbar
+│           ├── Hero.jsx
+│           ├── About.jsx           # narrative + Education block
+│           ├── Experience.jsx
+│           ├── Projects.jsx        # cards (3D tilt)
+│           ├── ProjectModal.jsx    # embedded Drive preview
+│           ├── Skills.jsx          # tool marquee
+│           ├── Leadership.jsx      # roles + testimonials
+│           ├── Contact.jsx
+│           ├── Footer.jsx
+│           ├── SectionLabel.jsx    # animated gradient titles
+│           └── CustomCursor.jsx    # amber dot + trailing ring
+├── tailwind.config.js
+├── craco.config.js
+├── postcss.config.js
+└── package.json
+```
 
-### `npm run build`
+## Editing content
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Everything recruiter-facing lives in **`src/data/mock.js`**:
+- `profile` — name, email, phone, photo, resume link, socials
+- `hero` — headline & subheadline
+- `about` — paragraphs
+- `education` — degrees
+- `experience` — roles + bullets
+- `projects` — titles, blurbs, Drive view + preview links, meta tags
+- `skills` — Product / Tools / Execution
+- `toolLogos` — marquee icons (Simple Icons slugs)
+- `leadership` — roles with metric bullets
+- `testimonials` — quotes
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Update the file and the site updates instantly.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Notes
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Resume and project decks are hosted on Google Drive. Update links in `mock.js`.
+- The custom cursor auto-disables on touch devices.
+- Social links use target=_blank + rel=noopener noreferrer. They're correctly wired; if you see a "refused to connect" page, that's only happening inside the Emergent preview iframe. Clicks work on deployed/direct URLs.
