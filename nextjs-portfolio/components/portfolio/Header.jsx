@@ -121,7 +121,7 @@ export default function Header() {
           rel="noreferrer"
           className="group inline-flex items-center gap-1.5 rounded-full border border-amber-400/30 bg-amber-400/10 px-3.5 py-1.5 text-[13px] text-amber-200 hover:bg-amber-400/15 hover:border-amber-400/50 transition-colors shrink-0"
         >
-          Resume / CV
+          CV
           <ArrowUpRight
             size={13}
             className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
