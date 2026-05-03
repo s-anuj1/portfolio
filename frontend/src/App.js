@@ -15,8 +15,9 @@ import CustomCursor from "./components/portfolio/CustomCursor";
 function Portfolio() {
   return (
     <div className="relative min-h-screen text-zinc-100 antialiased selection:bg-amber-400/30 selection:text-white">
-      {/* Ambient multi-glow background */}
+      {/* Ambient multi-layer background present across every section */}
       <div className="ambient-bg" aria-hidden="true" />
+      <div className="ambient-grid" aria-hidden="true" />
       <div className="ambient-noise" aria-hidden="true" />
 
       <Header />

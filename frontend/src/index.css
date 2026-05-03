@@ -18,7 +18,7 @@ body {
   font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
 }
 
-/* ====== Ambient backgrounds (soft amber glows + noise grain) ====== */
+/* ====== Ambient backgrounds ====== */
 .ambient-bg {
   position: fixed;
   inset: 0;
@@ -38,6 +38,21 @@ body {
   100% { transform: translate3d(1%, -0.6%, 0) scale(1.02); }
 }
 
+/* subtle site-wide grid that matches the hero aesthetic */
+.ambient-grid {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.85) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.85) 1px, transparent 1px);
+  background-size: 56px 56px;
+  -webkit-mask-image: radial-gradient(ellipse at 50% 30%, #000 0%, rgba(0,0,0,0.55) 55%, transparent 90%);
+  mask-image: radial-gradient(ellipse at 50% 30%, #000 0%, rgba(0,0,0,0.55) 55%, transparent 90%);
+}
+
 .ambient-noise {
   position: fixed;
   inset: 0;
@@ -49,7 +64,31 @@ body {
   background-size: 180px 180px;
 }
 
-/* ====== Marquee animation for tool logos ====== */
+/* ====== Section title: premium gradient + subtle shimmer ====== */
+.section-title {
+  background-image: linear-gradient(
+    110deg,
+    #ffffff 0%,
+    #fff7ed 25%,
+    #fcd34d 50%,
+    #fff7ed 75%,
+    #ffffff 100%
+  );
+  background-size: 220% 100%;
+  background-position: 0% 50%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: titleShimmer 10s linear infinite;
+}
+
+@keyframes titleShimmer {
+  0%   { background-position: 0% 50%; }
+  100% { background-position: -220% 50%; }
+}
+
+/* ====== Marquee ====== */
 .marquee-track {
   animation: marquee 38s linear infinite;
 }

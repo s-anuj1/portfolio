@@ -1,12 +1,23 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Mail, Phone, Linkedin, Twitter, Instagram, ArrowUpRight, Copy, Check } from "lucide-react";
+import {
+  Mail,
+  Phone,
+  Linkedin,
+  Twitter,
+  Instagram,
+  ArrowUpRight,
+  Copy,
+  Check,
+} from "lucide-react";
 import { profile } from "../../data/mock";
 import SectionLabel from "./SectionLabel";
 
 function CopyBtn({ value }) {
   const [done, setDone] = React.useState(false);
-  const copy = async () => {
+  const copy = async (e) => {
+    e.preventDefault();
+    e.stopPropagation();
     try {
       await navigator.clipboard.writeText(value);
       setDone(true);
@@ -15,6 +26,7 @@ function CopyBtn({ value }) {
   };
   return (
     <button
+      type="button"
       onClick={copy}
       className="h-9 w-9 grid place-items-center rounded-lg border border-white/10 bg-white/[0.03] text-zinc-300 hover:text-amber-300 hover:border-amber-400/30 transition-colors"
       aria-label="Copy"
@@ -57,7 +69,9 @@ export default function Contact() {
               <div className="mt-6 grid sm:grid-cols-2 gap-3 max-w-xl">
                 <div className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3">
                   <Mail size={16} className="text-amber-300" />
-                  <div className="text-sm text-zinc-300 truncate">{profile.email}</div>
+                  <div className="text-sm text-zinc-300 truncate">
+                    {profile.email}
+                  </div>
                   <div className="ml-auto">
                     <CopyBtn value={profile.email} />
                   </div>
@@ -78,9 +92,24 @@ export default function Contact() {
                   Elsewhere
                 </div>
                 <div className="mt-4 flex flex-col gap-2">
-                  <SocialRow icon={Linkedin} label="LinkedIn" href={profile.socials.linkedin} handle="/in/anuj-kumar" />
-                  <SocialRow icon={Twitter} label="Twitter / X" href={profile.socials.twitter} handle="@sainianuj_22" />
-                  <SocialRow icon={Instagram} label="Instagram" href={profile.socials.instagram} handle="@anujsainii.__" />
+                  <SocialRow
+                    icon={Linkedin}
+                    label="LinkedIn"
+                    href={profile.socials.linkedin}
+                    handle="/in/anuj-kumar"
+                  />
+                  <SocialRow
+                    icon={Twitter}
+                    label="Twitter / X"
+                    href={profile.socials.twitter}
+                    handle="@sainianuj_22"
+                  />
+                  <SocialRow
+                    icon={Instagram}
+                    label="Instagram"
+                    href={profile.socials.instagram}
+                    handle="@anujsainii.__"
+                  />
                 </div>
               </div>
             </div>
@@ -92,12 +121,19 @@ export default function Contact() {
 }
 
 function SocialRow({ icon: Icon, label, href, handle }) {
+  const openLink = (e) => {
+    // Safety net in case an overlay intercepts the native link.
+    if (!href) return;
+    e.preventDefault();
+    window.open(href, "_blank", "noopener,noreferrer");
+  };
   return (
     <a
       href={href}
       target="_blank"
-      rel="noreferrer"
-      className="group flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.02] px-4 py-3 hover:border-amber-400/30 hover:bg-white/[0.04] transition-colors"
+      rel="noopener noreferrer"
+      onClick={openLink}
+      className="group relative z-10 flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.02] px-4 py-3 hover:border-amber-400/30 hover:bg-white/[0.04] transition-colors cursor-pointer"
     >
       <div className="h-8 w-8 grid place-items-center rounded-lg bg-gradient-to-br from-amber-500/25 to-orange-600/10 border border-amber-400/25 text-amber-300">
         <Icon size={15} />
